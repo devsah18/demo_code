@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TRACE • AI Incident Investigator</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="grid-bg"></div>
+  <header class="topbar">
+    <div class="brand"><span>TRACE</span><small>AI INCIDENT INVESTIGATOR</small></div>
+    <div class="status" id="status">● READY</div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">SECURITY INVESTIGATION ENGINE</p>
+        <h1>From logs to the<br><span>story behind the attack.</span></h1>
+        <p class="sub">
+          Correlate fragmented security events, reconstruct an incident timeline,
+          and get an evidence-grounded investigation.
+        </p>
+      </div>
+      <div class="hero-card">
+        <div class="mini-label">INVESTIGATION MODE</div>
+        <div class="hero-number">DEFENSIVE</div>
+        <div class="mini-copy">No real-world attacks. Use synthetic or authorized logs only.</div>
+      </div>
+    </section>
+
+    <section class="upload-panel">
+      <div>
+        <p class="section-label">01 • INPUT</p>
+        <h2>Upload security logs</h2>
+        <p class="muted">JSON, JSONL, CSV, or simple key=value logs.</p>
+      </div>
+
+      <label class="dropzone" id="dropzone">
+        <input id="files" type="file" multiple accept=".json,.jsonl,.csv,.log,.txt" />
+        <div class="drop-icon">＋</div>
+        <strong>Drop logs here</strong>
+        <span id="fileText">or click to choose files</span>
+      </label>
+
+      <div class="action-row">
+        <button class="ghost" id="demoBtn">Load demo incident</button>
+        <button class="primary" id="investigateBtn">INVESTIGATE INCIDENT →</button>
+      </div>
+    </section>
+
+    <section id="results" class="hidden">
+      <div class="section-heading">
+        <div>
+          <p class="section-label">02 • INVESTIGATION</p>
+          <h2>Incident reconstructed</h2>
+        </div>
+        <span class="severity" id="severityBadge">HIGH</span>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><span>EVENTS ANALYZED</span><strong id="eventsAnalyzed">0</strong></div>
+        <div class="stat"><span>ANOMALIES</span><strong id="anomalies">0</strong></div>
+        <div class="stat"><span>CORRELATED</span><strong id="correlated">0</strong></div>
+        <div class="stat"><span>MODEL CONFIDENCE</span><strong id="confidence">0%</strong></div>
+      </div>
+
+      <div class="two-col">
+        <div class="card">
+          <div class="card-head">
+            <span>ATTACK TIMELINE</span>
+            <span id="incidentTitle" class="accent">—</span>
+          </div>
+          <div id="timeline" class="timeline"></div>
+        </div>
+
+        <div class="card">
+          <div class="card-head">
+            <span>INCIDENT SUMMARY</span>
+          </div>
+          <div class="summary-grid">
+            <div><small>INITIAL EVENT</small><b id="initialEvent">—</b></div>
+            <div><small>ACCOUNT</small><b id="account">—</b></div>
+            <div><small>AFFECTED RESOURCE</small><b id="resource">—</b></div>
+            <div><small>SEVERITY</small><b id="severityText">—</b></div>
+          </div>
+
+          <div class="explain">
+            <div class="card-head"><span>WHY THIS MATTERS</span></div>
+            <div id="evidenceList"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <span>TRACE GRAPH</span>
+          <span class="muted">correlated event path</span>
+        </div>
+        <div id="graph" class="graph"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <span>RECOMMENDED RESPONSE</span>
+        </div>
+        <div id="actions" class="actions"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
